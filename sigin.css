@@ -1,0 +1,245 @@
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 10px 0px 10px;
+}
+
+.header .logo{
+    display: flex;
+    align-items: center;
+}
+
+.header .logo p{
+    font-size: 40px;
+    margin: 0;
+    color: #78d53f;
+}
+
+.header .login{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.header .login button{
+    display: none;
+    color: white;
+    background-color: #78d53f;
+    border: none;
+    padding: 6px 15px 6px 15px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form h1,.form h2{
+    margin: 0;
+}
+
+.form h1{
+    font-size: 45px;
+    margin:20px 0px 0px 0px;
+}
+
+.form  h2{
+    font-size: 33px;
+    font-weight: 100;
+    margin:10px 0px 0px 0px;
+}
+
+.form p{
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    width: 460px;
+}
+
+.form input{
+    width: 450px;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid #78d53f;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.form input:focus{
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid #78d53f;
+    font-size: 20px;
+    outline: none;
+}
+
+
+.form .next{
+    font-size: 30px;
+    padding: 5px 50px 5px 50px;
+    margin-top: 50px;
+    background-color:#78d53f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.form2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.form2 h1,.form2 h2{
+    margin: 0;
+}
+
+.form2 h1{
+    font-size: 50px;
+    margin:10px 0px 0px 0px;
+}
+
+.form2  h2{
+    font-size: 35px;
+    font-weight: 100;
+    margin:10px 0px 0px 0px;
+}
+
+.form2 p{
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 500px;
+}
+
+.form2 input{
+    width: 500px;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid #78d53f;
+    font-size: 20px;
+}
+
+.form2 input:focus{
+    outline: none;
+}
+
+.form2 .signbutton{
+    font-size: 30px;
+    padding: 5px 50px 5px 50px;
+    margin-top: 50px;
+    background-color:#78d53f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+@media (max-width: 600px){
+    .header{
+        width: 95%;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .header .logo img{
+        height: 25px;
+    }
+
+    .header .logo p{
+        font-size: 20px;
+        margin: 0;
+        color: #78d53f;
+    }
+
+    .header .login{
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+    }
+
+    #para{
+        display: none;
+    }
+
+    .header .login button{
+        display: flex;
+        border-radius: 5px;
+    }
+
+    .form{
+        margin-top: 30%;
+    }
+
+    .form h1{
+        font-size: 30px;
+        margin:20px 0px 0px 0px;
+    }
+
+    .form  h2{
+        font-size: 20px;
+        font-weight: 100;
+        margin:10px 0px 0px 0px;
+    }
+
+    .form p{
+        margin-bottom: 5px;
+        font-size: 18px;
+        width: 310px;
+    }
+
+    .form input{
+        width: 300px;
+        font-size: 20px;
+    }
+
+    .form .next{
+        font-size: 18px;
+        padding: 5px 30px 5px 30px;
+        margin-top: 30px;
+    }
+
+    .form2{
+        margin-top: 30%;
+    }
+
+    .form2 h1{
+        font-size: 30px;
+        margin:20px 0px 0px 0px;
+    }
+
+    .form2  h2{
+        font-size: 20px;
+        font-weight: 100;
+        margin:10px 0px 0px 0px;
+    }
+
+    .form2 p{
+        margin-bottom: 5px;
+        font-size: 18px;
+        width: 310px;
+    }
+
+    .form2 input{
+        width: 300px;
+        font-size: 20px;
+    }
+
+    .form2 .signbutton{
+        font-size: 18px;
+        padding: 5px 30px 5px 30px;
+        margin-top: 30px;
+    }
+
+
+}
