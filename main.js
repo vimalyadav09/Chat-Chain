@@ -54,7 +54,7 @@ if (sendBtn) {
         push(messagesRef, newMessage)
             .then(() => {
                 const msgElement = document.createElement("div");
-                msgElement.className = msg.sender === username ? "message my-message" : "message other-message";
+                msgElement.className = "message " + (newMessage.sender === username ? "my-message" : "other-message");
                 msgElement.innerHTML = `<strong>${newMessage.sender}</strong>
                     <p>${newMessage.text}</p>
                     <span style="font-size: 12px; color: gray;">${newMessage.time}</span>`;
@@ -74,13 +74,16 @@ get(messagesRef)
     .then(snapshot => {
         const data = snapshot.val();
         if (data) {
-            Object.values(data).forEach(msg => {
+            // Show latest message on top
+            const messages = Object.values(data).reverse();
+
+            messages.forEach(msg => {
                 const msgElement = document.createElement("div");
-                msgElement.className = msg.sender === username ? "message my-message" : "message other-message";
+                msgElement.className = "message " + (msg.sender === username ? "my-message" : "other-message");
                 msgElement.innerHTML = `<strong>${msg.sender}</strong>
                     <p>${msg.text}</p>
                     <span style="font-size: 12px; color: gray;">${msg.time || "Unknown time"}</span>`;
-                messagesDiv.prepend(msgElement);
+                messagesDiv.appendChild(msgElement); // Keep append here to maintain order
             });
         } else {
             messagesDiv.innerHTML = `<div class="empty-msg"><p>No messages found</p></div>`;
@@ -107,17 +110,20 @@ document.getElementById("logout")?.addEventListener("click", () => {
     window.location.href = "index.html";
 });
 
+// Handle mobile keyboard (optional)
 let originalHeight = window.innerHeight;
 
 window.addEventListener("resize", () => {
-  const newHeight = window.innerHeight;
+    const newHeight = window.innerHeight;
+    const bottomContainer = document.querySelector(".bottom-container");
 
-  if (newHeight < originalHeight) {
-    // Keyboard is open
-    document.querySelector(".bottom-container").style.paddingBottom = "300px"; // adjust as needed
-  } else {
-    // Keyboard is closed
-    document.querySelector(".bottom-container").style.paddingBottom = "0px";
-  }
+    if (!bottomContainer) return;
+
+    if (newHeight < originalHeight) {
+        // Keyboard is open
+        bottomContainer.style.paddingBottom = "300px";
+    } else {
+        // Keyboard is closed
+        bottomContainer.style.paddingBottom = "0px";
+    }
 });
-
