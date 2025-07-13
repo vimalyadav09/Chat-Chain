@@ -18,6 +18,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+// Auto-redirect if user already logged in
+const existingUser = localStorage.getItem("username");
+const existingEmail = localStorage.getItem("email");
+
+if (existingUser && existingEmail) {
+  window.location.href = "main.html";
+}
+
 // DOM elements
 const button = document.querySelector(".next");
 const user = document.querySelector(".name");

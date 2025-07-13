@@ -33,6 +33,9 @@ const usermailDiv = document.getElementById("usermail");
 if (username && usermail) {
     if (usernameDiv) usernameDiv.textContent = username;
     if (usermailDiv) usermailDiv.textContent = usermail;
+}else {
+  // If no user found, redirect to login/signup
+  window.location.href = "signin.html"; // or index.html
 }
 
 // Realtime message loading
