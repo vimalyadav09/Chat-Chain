@@ -1,6 +1,6 @@
 // Firebase imports (MODULAR SDK)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getDatabase, ref, set, get, push } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+import { getDatabase, ref, set, get, push,onChildAdded} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -35,6 +35,23 @@ if (username && usermail) {
     if (usermailDiv) usermailDiv.textContent = usermail;
 }
 
+// Realtime message loading
+const messagesRef = ref(db, "messages");
+messagesDiv.innerHTML = ""; // clear previous messages
+
+onChildAdded(messagesRef, (snapshot) => {
+    const msg = snapshot.val();
+    const msgElement = document.createElement("div");
+    msgElement.className = "message " + (msg.sender === username ? "my-message" : "other-message");
+
+    msgElement.innerHTML = `
+        <strong>${msg.sender}</strong>
+        <p>${msg.text}</p>
+        <span style="font-size: 12px; color: gray;">${msg.time || "Unknown time"}</span>
+    `;
+    messagesDiv.prepend(msgElement); // append keeps chat flow like WhatsApp
+});
+
 // Send message
 if (sendBtn) {
     sendBtn.addEventListener("click", () => {
@@ -53,12 +70,6 @@ if (sendBtn) {
         const messagesRef = ref(db, `messages`);
         push(messagesRef, newMessage)
             .then(() => {
-                const msgElement = document.createElement("div");
-                msgElement.className = "message " + (newMessage.sender === username ? "my-message" : "other-message");
-                msgElement.innerHTML = `<strong>${newMessage.sender}</strong>
-                    <p>${newMessage.text}</p>
-                    <span style="font-size: 12px; color: gray;">${newMessage.time}</span>`;
-                messagesDiv.prepend(msgElement);
                 messageInput.value = "";
             })
             .catch(err => {
@@ -66,32 +77,6 @@ if (sendBtn) {
             });
     });
 }
-
-// Load all messages from /messages (global)
-const messagesRef = ref(db, 'messages');
-
-get(messagesRef)
-    .then(snapshot => {
-        const data = snapshot.val();
-        if (data) {
-            // Show latest message on top
-            const messages = Object.values(data).reverse();
-
-            messages.forEach(msg => {
-                const msgElement = document.createElement("div");
-                msgElement.className = "message " + (msg.sender === username ? "my-message" : "other-message");
-                msgElement.innerHTML = `<strong>${msg.sender}</strong>
-                    <p>${msg.text}</p>
-                    <span style="font-size: 12px; color: gray;">${msg.time || "Unknown time"}</span>`;
-                messagesDiv.appendChild(msgElement); // Keep append here to maintain order
-            });
-        } else {
-            messagesDiv.innerHTML = `<div class="empty-msg"><p>No messages found</p></div>`;
-        }
-    })
-    .catch(err => {
-        console.error("Error fetching messages:", err);
-    });
 
 // Mobile menu toggle
 document.getElementById("bar")?.addEventListener("click", () => {
@@ -110,13 +95,11 @@ document.getElementById("logout")?.addEventListener("click", () => {
     window.location.href = "index.html";
 });
 
-// Handle mobile keyboard (optional)
+// Handle mobile keyboard push-up space
 let originalHeight = window.innerHeight;
-
 window.addEventListener("resize", () => {
     const newHeight = window.innerHeight;
     const bottomContainer = document.querySelector(".bottom-container");
-
     if (!bottomContainer) return;
 
     if (newHeight < originalHeight) {
