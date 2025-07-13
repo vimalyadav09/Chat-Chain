@@ -211,12 +211,14 @@ body{
     align-self: flex-start;
     background-color: #e0f7fa;
     text-align: left;
+    margin-right: 45%;
 }
 
 .other-message {
     align-self: flex-end;
     background-color: #c8e6c9;
     margin-right: 10px;
+    margin-left: 45%;
 }
 
 .empty-msg {
@@ -294,5 +296,13 @@ body{
         height: 40px;
         border: none;
         font-size: 18px;
-}
+    }
+
+    .other-message{
+        margin-left: 10%;
+    }
+
+    .my-message{
+        margin-right: 10%;
+    }
 }
