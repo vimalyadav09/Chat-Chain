@@ -106,3 +106,18 @@ document.getElementById("logout")?.addEventListener("click", () => {
     localStorage.clear();
     window.location.href = "index.html";
 });
+
+let originalHeight = window.innerHeight;
+
+window.addEventListener("resize", () => {
+  const newHeight = window.innerHeight;
+
+  if (newHeight < originalHeight) {
+    // Keyboard is open
+    document.querySelector(".bottom-container").style.paddingBottom = "300px"; // adjust as needed
+  } else {
+    // Keyboard is closed
+    document.querySelector(".bottom-container").style.paddingBottom = "0px";
+  }
+});
+
