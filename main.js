@@ -104,5 +104,5 @@ document.getElementById("cancel")?.addEventListener("click", () => {
 // Logout
 document.getElementById("logout")?.addEventListener("click", () => {
     localStorage.clear();
-    window.location.href = "signin.html";
+    window.location.href = "index.html";
 });

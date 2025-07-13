@@ -23,11 +23,11 @@ const signBtn = document.getElementById("signbtn");
 const signBtn1 = document.getElementById("para");
 
 signBtn.addEventListener('click',()=>{
-    window.location.href="signin.html"
+    window.location.href="index.html"
 })
 
 signBtn1.addEventListener('click',()=>{
-    window.location.href="signin.html"
+    window.location.href="index.html"
 })
 
 const loginBtn = document.getElementById("loginBtn");
