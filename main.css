@@ -277,7 +277,7 @@ body{
         width: 390px;
         font-size: 25px;
         margin-top: 20px;
-        margin-right: 10px;
+        margin-right: 50px;
     }
 
     .empty-msg{
@@ -291,7 +291,7 @@ body{
 
     .bottom input{
         width: 550px;
-        height: 45px;
+        height: 40px;
         border: none;
         font-size: 18px;
 }
