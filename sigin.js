@@ -45,7 +45,6 @@ loginBtn1.addEventListener('click',()=>{
 
 let userName = "";
 
-// Handle "Next" button click
 button.addEventListener('click', () => {
     const name = user.value.trim();
     if (name !== "") {
@@ -65,7 +64,7 @@ if (!localStorage.getItem("theme")) {
 }
 
 
-// Handle "Sign In" button click
+
 signin.addEventListener('click', () => {
     const userEmail = email.value.trim();
     const userPass = password.value.trim();
@@ -73,7 +72,7 @@ signin.addEventListener('click', () => {
     if (userEmail !== "" && userPass !== "") {
         localStorage.setItem("email", userEmail);
 
-        // Save user data in Firebase
+
         set(ref(db, "users/" + userName), {
             name: userName,
             email: userEmail,
@@ -81,7 +80,7 @@ signin.addEventListener('click', () => {
         })
         .then(() => {
             alert("User registered successfully!");
-            window.location.href = "main.html"; // Redirect after saving
+            window.location.href = "main.html"; 
         })
         .catch(error => {
             console.error("Error saving user:", error);

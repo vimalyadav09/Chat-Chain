@@ -51,7 +51,6 @@ loginBtn.addEventListener("click", async () => {
 
     const userData = snapshot.val();
     if (userData.password === password) {
-      // Store in localStorage
       localStorage.setItem("name", userData.name);
       localStorage.setItem("email", userData.email);
       window.location.href = "main.html";

@@ -30,18 +30,16 @@ const usernameDiv = document.getElementById("username");
 const usermailDiv = document.getElementById("usermail");
 const notification = document.getElementById("Notification")
 
-// Display user info
 if (username && usermail) {
     if (usernameDiv) usernameDiv.textContent = username;
     if (usermailDiv) usermailDiv.textContent = usermail;
 }else {
-  // If no user found, redirect to login/signup
-  window.location.href = "index.html"; // or index.html
+  window.location.href = "index.html"; 
 }
 
-// Realtime message loading
+
 const messagesRef = ref(db, "messages");
-messagesDiv.innerHTML = ""; // clear previous messages
+messagesDiv.innerHTML = ""; 
 
 onChildAdded(messagesRef, (snapshot) => {
     const msg = snapshot.val();
@@ -53,17 +51,16 @@ onChildAdded(messagesRef, (snapshot) => {
         <p>${msg.text}</p>
         <span style="font-size: 12px; color: gray;">${msg.time || "Unknown time"}</span>
     `;
-    messagesDiv.prepend(msgElement); // append keeps chat flow like WhatsApp
+    messagesDiv.prepend(msgElement); 
     if (!document.hasFocus() && msg.sender !== username && Notification.permission === "granted") {
         new Notification(`New message from ${msg.sender}`, {
             body: msg.text,
-            icon: "Logo2.png" // Optional: add a chat icon image
+            icon: "Logo2.png"
         });
     }
 });
 
 notification.addEventListener('click',()=>{
-    // Ask for browser notification permission
     if ("Notification" in window) {
         Notification.requestPermission().then(permission => {
             if (permission === "granted") {
@@ -102,7 +99,6 @@ if (sendBtn) {
 
 const toggleBtn = document.getElementById("toggleTheme");
 
-// Load previously saved theme
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark-mode");
 }
@@ -110,7 +106,6 @@ if (localStorage.getItem("theme") === "dark") {
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 
-  // Save preference in localStorage
   if (document.body.classList.contains("dark-mode")) {
     localStorage.setItem("theme", "dark");
     document.getElementById("sun").style.display="flex"
@@ -124,8 +119,6 @@ toggleBtn.addEventListener("click", () => {
   }
 });
 
-
-// Mobile menu toggle
 document.getElementById("bar")?.addEventListener("click", () => {
     document.getElementById("left").style.display = "none";
     document.getElementById("right").style.display = "flex";
