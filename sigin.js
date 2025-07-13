@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 // Auto-redirect if user already logged in
-const existingUser = localStorage.getItem("username");
+const existingUser = localStorage.getItem("name");
 const existingEmail = localStorage.getItem("email");
 
 if (existingUser && existingEmail) {

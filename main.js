@@ -35,7 +35,7 @@ if (username && usermail) {
     if (usermailDiv) usermailDiv.textContent = usermail;
 }else {
   // If no user found, redirect to login/signup
-  window.location.href = "signin.html"; // or index.html
+  window.location.href = "index.html"; // or index.html
 }
 
 // Realtime message loading
