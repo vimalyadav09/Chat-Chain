@@ -132,6 +132,7 @@ body{
     display: flex;
     margin-bottom: 30px;
     width: 170px;
+    cursor: pointer;
 }
 
 #photo{
@@ -237,6 +238,47 @@ body{
     margin: 0;
 }
 
+body.dark-mode {
+  background-color: #121212;
+}
+
+body.dark-mode .header{
+    color: white;
+    background-color: #121212;
+}
+
+body.dark-mode .bottom{
+    color: white;
+    background-color: #333;
+}
+
+body.dark-mode .bottom .message-bar{
+    color: white;
+    background-color: #333;
+}
+
+
+body.dark-mode .bottom input{
+    color: white;
+    background-color: #333;
+}
+
+
+.dark-mode .message {
+  background-color: #333;
+  color: white;
+}
+
+#toggleTheme{
+    display: flex;
+    margin-bottom: 30px;
+    width: 170px;
+    cursor: pointer;
+}
+
+#sun{
+    display: none;
+}
 
 @media (max-width: 600px){
     .main .right{

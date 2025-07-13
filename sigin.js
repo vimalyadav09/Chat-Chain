@@ -58,6 +58,13 @@ button.addEventListener('click', () => {
     }
 });
 
+if (!localStorage.getItem("theme")) {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.body.classList.add("dark-mode");
+  }
+}
+
+
 // Handle "Sign In" button click
 signin.addEventListener('click', () => {
     const userEmail = email.value.trim();

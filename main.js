@@ -28,6 +28,7 @@ const messagesDiv = document.querySelector(".messages");
 const sendBtn = document.getElementById("send");
 const usernameDiv = document.getElementById("username");
 const usermailDiv = document.getElementById("usermail");
+const notification = document.getElementById("Notification")
 
 // Display user info
 if (username && usermail) {
@@ -53,7 +54,25 @@ onChildAdded(messagesRef, (snapshot) => {
         <span style="font-size: 12px; color: gray;">${msg.time || "Unknown time"}</span>
     `;
     messagesDiv.prepend(msgElement); // append keeps chat flow like WhatsApp
+    if (!document.hasFocus() && msg.sender !== username && Notification.permission === "granted") {
+        new Notification(`New message from ${msg.sender}`, {
+            body: msg.text,
+            icon: "Logo2.png" // Optional: add a chat icon image
+        });
+    }
 });
+
+notification.addEventListener('click',()=>{
+    // Ask for browser notification permission
+    if ("Notification" in window) {
+        Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+                console.log("Notification permission granted.");
+            }
+        });
+}
+
+})
 
 // Send message
 if (sendBtn) {
@@ -80,6 +99,31 @@ if (sendBtn) {
             });
     });
 }
+
+const toggleBtn = document.getElementById("toggleTheme");
+
+// Load previously saved theme
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("dark-mode");
+}
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  // Save preference in localStorage
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+    document.getElementById("sun").style.display="flex"
+    document.getElementById("moon").style.display="none"
+    document.getElementById("ThemeId").textContent="Light Theme"
+  } else {
+    localStorage.setItem("theme", "light");
+    document.getElementById("moon").style.display="flex"
+    document.getElementById("sun").style.display="none"
+    document.getElementById("ThemeId").textContent="Dark Theme"
+  }
+});
+
 
 // Mobile menu toggle
 document.getElementById("bar")?.addEventListener("click", () => {
